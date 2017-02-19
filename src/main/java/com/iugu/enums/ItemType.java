@@ -4,7 +4,7 @@ import org.codehaus.jackson.annotate.JsonValue;
 
 public enum ItemType {
 
-	CREDIT_CARD("credit_card");
+	credit_card("credit_card");
 
 	private String value;
 

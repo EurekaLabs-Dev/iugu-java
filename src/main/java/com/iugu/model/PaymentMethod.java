@@ -8,6 +8,9 @@ import com.iugu.enums.ItemType;
 
 public class PaymentMethod {
 
+	public PaymentMethod() {
+	}
+
 	public PaymentMethod(String customerId, String description, List<Data> data) {
 		this.customerId = customerId;
 		this.description = description;
