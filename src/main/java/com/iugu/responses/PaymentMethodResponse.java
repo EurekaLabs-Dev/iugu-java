@@ -54,6 +54,9 @@ public class PaymentMethodResponse {
 		this.data = data;
 	}
 
+	@JsonIgnoreProperties(
+			ignoreUnknown = true
+	)
 	private static class DataCard {
 		@JsonProperty("holder_name")
 		private String holderName;
