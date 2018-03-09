@@ -16,12 +16,12 @@ import static com.iugu.utils.ResponseUtils.handleResponse;
 public class PaymentMethodService {
     private final static String URL = Iugu.url("/customers/%s/payment_methods/%s");
 
-    public String getUrlWithIds(String ...ids) {
+    public String getUrlWithIds(String... ids) {
         return String.format(URL, ids);
     }
 
     public PaymentMethodResponse create(String customerId, PaymentMethod paymentMethod) throws IuguException {
-         return handleResponse(
+        return handleResponse(
                 Iugu.getClient()
                         .target(getUrlWithIds(customerId, ""))
                         .request()
@@ -54,11 +54,24 @@ public class PaymentMethodService {
     }
 
     public List<PaymentMethodResponse> find(String customerId) throws IuguException {
-        GenericType<List<PaymentMethodResponse>> list = new GenericType<List<PaymentMethodResponse>>(){};
+        GenericType<List<PaymentMethodResponse>> list = new GenericType<List<PaymentMethodResponse>>() {
+        };
         return Iugu.getClient()
-            .target(getUrlWithIds(customerId, ""))
-            .request()
-            .get(list);
+                .target(getUrlWithIds(customerId, ""))
+                .request()
+                .get(list);
+
+    }
+
+    public PaymentMethodResponse delete(String customerId, String paymentMethodId) throws IuguException {
+        return handleResponse(
+                Iugu.getClient()
+                        .target(getUrlWithIds(customerId, paymentMethodId))
+                        .request()
+                        .delete(),
+                "Error deleting payment method",
+                PaymentMethodResponse.class
+        );
 
     }
 }
